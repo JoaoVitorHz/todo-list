@@ -29,5 +29,13 @@ class Tarefas{
         $sql->bindValue(':id', $id);
         $sql->execute();
     }
+
+    public function tarefa($id, $concluido){
+        $sql = "UPDATE tasks SET taskCompleted = :concluido WHERE id = :id";
+        $sql = $this->pdo->prepare($sql);
+        $sql->bindValue(':concluido', $concluido);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+    }
 }
 ?>

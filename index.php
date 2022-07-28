@@ -9,33 +9,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Lista de tarefas</h1>
+    <div class="toDoList">
+        <h1>Lista de tarefas</h1>
+        <hr/>
 
-    <form action="" method="">
-         Adicionar nova tarefa <br/>
-        <input type="text" name="newTask" placeholder="Digite aqui uma nova tarefas"><br/>
-        <button type="submit">Adicionar nova Tarefa</button><br/><br/>
+        <form action="" method="">
+            <div class="input">
+                <input type="text" name="newTask" placeholder="Digite aqui uma nova tarefas">
+                <button type="submit">Adicionar</button>
+            </div>
+       
 
-        <table border="1" width="500">
-            <?php 
-                $lista = $tarefas->getAllTask();
-                foreach($lista as $iten):
-            ?>
-            <tr>
-                <td><?php echo $iten['taskName'];?></td>
-                <td>
-                    <a href="">[ OK ]</a>
-                    <a href="excluir.php?id=<?php echo $iten['id']; ?>">[ APAGAR ]</a>
-                </td>
-            </tr>
-            <?php endforeach;?>
-        </table>
-    </form>
-
+            <table width="500">
+                <?php 
+                    $lista = $tarefas->getAllTask();
+                    foreach($lista as $iten):
+                ?>
+                <tr class="linha">
+                    <td class="task"><?php echo $iten['taskName'];?></td>
+                    <td class="actions">
+                        <a class="cheked <?php echo ($iten['taskCompleted']) ? 'feito' : 'falta'?>" href="taskCompleted.php?concluido=<?php echo $iten['taskCompleted']?>&id=<?php echo $iten['id']?>"> <?php echo ($iten['taskCompleted'] ? '<i class="icone fa-solid fa-check"></i>': '<i class="icone fa-solid fa-arrow-rotate-right"></i>')?></a>
+                        <a class="apagar" href="excluir.php?id=<?php echo $iten['id']; ?>"><i class="icone fa-solid fa-x"></i></a>
+                    </td>
+                </tr>
+                <?php endforeach;?>
+            </table>
+        </form>
+    </div>
+    
     <?php 
         if(!empty($_GET['newTask'])){
             $task = $_GET['newTask'];
