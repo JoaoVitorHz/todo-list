@@ -45,7 +45,7 @@ table tr{
     background-color: rgb(249, 249, 249);
 }
 table .task{
-    flex: 4;
+    flex: 3;
     padding-right: 10px;
 }
 table .actions{
