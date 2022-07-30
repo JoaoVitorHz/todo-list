@@ -20,12 +20,6 @@ class Tarefas{
     }
 
     //pega as tarefas do banco
-    public function getAllTask(){
-        $sql = "SELECT * FROM tasks";
-
-        $sql = $this->pdo->query($sql);
-        return $sql->fetchAll();
-    }
     public function getAllList(){
         $sql = "SELECT * FROM list";
         $sql = $this->pdo->query($sql);
@@ -41,6 +35,17 @@ class Tarefas{
 
     public function deleteTask($id) {
         $sql = "DELETE FROM tasks WHERE id = :id";
+        $sql = $this->pdo->prepare($sql);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+    }
+    public function deleteList($id) {
+        $sql = "DELETE FROM list WHERE id = :id";
+        $sql = $this->pdo->prepare($sql);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        $sql = "DELETE FROM tasks WHERE listId = :id";
         $sql = $this->pdo->prepare($sql);
         $sql->bindValue(':id', $id);
         $sql->execute();
