@@ -1,5 +1,5 @@
 <?php 
-    include 'model.php';
+    include '../Model/model.php';
     $tarefas = new Tarefas();
 
     $id = $_GET['id'];
