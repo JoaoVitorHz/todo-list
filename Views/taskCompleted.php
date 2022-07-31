@@ -1,6 +1,6 @@
 <?php 
-    include '../Model/model.php';
-    $tarefas = new Tarefas();
+    include '../Controller/controller.php';
+    $taskCompleted = new Controller();
 
     $concluido = $_GET['concluido'];
     $id = $_GET['id'];
@@ -10,6 +10,6 @@
         $concluido = 0;
     }
 
-    $tarefas->tarefa($id, $concluido);
+    $taskCompleted->controllerTaskCompleted($id, $concluido);
     header("Location: index.php");
 ?>

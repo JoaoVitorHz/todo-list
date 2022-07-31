@@ -1,9 +1,9 @@
 <?php 
-    include '../Model/model.php';
-    $tarefas = new Tarefas();
+    include '../Controller/controller.php';
+    $apagar = new Controller();
 
     $id = $_GET['id'];
-    $tarefas->deleteTask($id);
+    $apagar->controllerDeleteTask($id);
 
     header("Location: index.php");
 ?>

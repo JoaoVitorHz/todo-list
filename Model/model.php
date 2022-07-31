@@ -1,5 +1,5 @@
 <?php
-class Tarefas{
+class Model{
     private $pdo;
     public function __construct(){
         $this->pdo = new PDO("mysql:dbname=task;host=localhost", "root", "");
@@ -51,7 +51,7 @@ class Tarefas{
         $sql->execute();
     }
 
-    public function tarefa($id, $concluido){
+    public function taskCompleted($id, $concluido){
         $sql = "UPDATE tasks SET taskCompleted = :concluido WHERE id = :id";
         $sql = $this->pdo->prepare($sql);
         $sql->bindValue(':concluido', $concluido);

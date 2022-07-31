@@ -1,6 +1,6 @@
 <?php 
-    include '../Model/model.php';
-    $tarefas = new Tarefas();
+    require '../Controller/controller.php';
+    $view = new Controller();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,8 @@
                 <?php 
                     if(!empty($_GET['addNameList'])){
                         $nameList = $_GET['addNameList'];
-                        $tarefas->addNewList($nameList);
+
+                        $view->controllerAddNewList($nameList);
                         header("Location: index.php");
                     }
                 ?>
@@ -36,7 +37,7 @@
             Escolha uma das listas abaixo
             <div class="ListarListas">
                 <?php 
-                    $button = $tarefas->getAllList();
+                    $button = $view->controllerGetAllList();
                     foreach($button as $t):
                 ?>
                 <a href="index.php?id=<?php echo $t['id']?>"><?php echo $t['listName']?></a>
@@ -68,7 +69,7 @@
                         if(!empty($_GET['id'])){
                         $idList = $_GET['id'];
                             
-                        $lista = $tarefas->getTaskList($idList);
+                        $lista = $view->controllerGetTaskList($idList);
                         foreach($lista as $iten):
                     ?>
                     <tr class="linha">
@@ -88,7 +89,7 @@
             $task = $_GET['newTask'];
             $idList = $_GET['idList'];
             echo $idList;
-            $tarefas->addNewTask($task, $idList);
+            $view->controllerAddNewTask($task, $idList);
             header("Location: index.php");
         }
     ?>
